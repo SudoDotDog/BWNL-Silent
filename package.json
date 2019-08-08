@@ -1,0 +1,35 @@
+{
+  "name": "@bwnl/silent",
+  "version": "1.0.0",
+  "description": ":black_square_button: BWNL Loading for React",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudoDotDog/BWNL-Silent.git"
+  },
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoDotDog/BWNL-Silent/issues"
+  },
+  "homepage": "https://github.com/SudoDotDog/BWNL-Silent#readme",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@sudoo/jss": "^1.0.1"
+  },
+  "devDependencies": {
+    "@sudoo/io": "^1.6.1",
+    "@sudoo/mock": "^1.2.0",
+    "@sudoo/react-force": "^1.5.0",
+    "@sudoo/react-force-dev": "^1.5.0",
+    "@sudoo/triforce": "^1.8.1",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0"
+  }
+}
