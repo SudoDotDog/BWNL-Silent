@@ -1088,10 +1088,10 @@
     "@sudoo/bark" "^2.7.1"
     connor "^2.6.0"
 
-"@sudoo/jss@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sudoo/jss/-/jss-1.0.1.tgz#e53f1039e06bc9136f928d423cf448e9aaa9af5b"
-  integrity sha512-XXJ4tEqe3UGidS9xkbALl0mU8KyqT2s5q1I+IJ6lm6plNfPGTJ3fy2m7WCcpA4zcxCuodSKVwrFi/NNliZSLUg==
+"@sudoo/jss@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@sudoo/jss/-/jss-1.2.1.tgz#93d728f3b0c84f08d54dfb94bb03d57d7db62cad"
+  integrity sha512-i8xxtTbmwUUfDcGtiqhORHWCuTzEdczMYPKpVLHUlpqp+5f5Q7jl/+PshcjixYps2HMO8kJOX700KmPxxMZUZg==
   dependencies:
     jss "^10.0.0-alpha.23"
     jss-preset-default "^10.0.0-alpha.23"

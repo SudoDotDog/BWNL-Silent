@@ -7,3 +7,5 @@
 import { Register } from "@sudoo/jss";
 
 Register.register();
+
+export * from "./silent";
