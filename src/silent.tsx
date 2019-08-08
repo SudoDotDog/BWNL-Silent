@@ -52,16 +52,18 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
         return (<div className={this._style.wrapper}>
             <div className={this._style.header}>Command</div>
             <div className={this._style.body}>
-                <input
-                    autoFocus
-                    autoCapitalize="off"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    className={this._style.input}
-                    value={this.state.value}
-                    onKeyDown={this._handleKeyDown}
-                    onChange={this._handleChange}
-                />
+                <span className={this._style.inputWrapper}>
+                    <input
+                        autoFocus
+                        autoCapitalize="off"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className={this._style.input}
+                        value={this.state.value}
+                        onKeyDown={this._handleKeyDown}
+                        onChange={this._handleChange}
+                    />
+                </span>
             </div>
             <div
                 className={this._style.dropDown}
@@ -90,8 +92,8 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
         const newValue: string = event.target.value;
         this.setState({
             selected: 0,
-            value: event.target.value,
-            options: this.props.config.getAutocomplete(event.target.value),
+            value: newValue,
+            options: this.props.config.getAutocomplete(newValue),
         }, this._correctWindow);
     }
 
@@ -147,8 +149,9 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
         const topLine: number = nextPosition * 25;
         const bottomLine: number = topLine + 25;
 
-        const windowTop: number = this._dropdownRef.scrollTop;
-        const windowBottom: number = this._dropdownRef.clientHeight + this._dropdownRef.scrollTop;
+        const windowTop: number = Math.round(this._dropdownRef.scrollTop);
+        const windowBottom: number = Math.round(this._dropdownRef.clientHeight + this._dropdownRef.scrollTop);
+
         if (topLine >= windowBottom) {
             this._dropdownRef.scrollTo({
                 top: windowTop + 25,
