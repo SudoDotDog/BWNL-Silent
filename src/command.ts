@@ -17,7 +17,7 @@ export class SilentCommand {
     private readonly _command: string;
     private readonly _callback: SilentCallback;
 
-    private _description: string;
+    private _description: string = '';
 
     private constructor(command: string, callback: SilentCallback) {
 
