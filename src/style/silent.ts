@@ -31,7 +31,8 @@ const SilentStyleBase: JSSStyle = {
         fontSize: '25px',
     },
     dropDown: {
-
+        height: `${25 * 6}px`,
+        overflow: 'auto',
     },
     option: {
         paddingLeft: '9px',
