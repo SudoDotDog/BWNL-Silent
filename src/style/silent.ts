@@ -17,14 +17,15 @@ const SilentStyleBase: JSSStyle = {
     },
     header: {
         height: 'auto',
-        fontWeight: 'bold',
         paddingLeft: '5px',
         color: NAVY,
     },
     body: {
         display: 'flex',
-        borderBottom: `3px solid ${NAVY}`,
         flex: 1,
+    },
+    bodyBorder: {
+        borderBottom: `3px solid ${NAVY}`,
     },
     inputWrapper: {
         flex: 1,

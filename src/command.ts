@@ -46,6 +46,19 @@ export class SilentCommand {
         return this;
     }
 
+    public execute(value: string): this {
+
+        const splited: string[] = value.split(':');
+
+        if (splited.length === 2) {
+            const arg: string = splited[1];
+            this.callback(arg.trim());
+        } else {
+            this._callback();
+        }
+        return this;
+    }
+
     public distance(target: string): number {
 
         const result: number = compare(this._command).with(target).distance;

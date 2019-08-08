@@ -4,7 +4,7 @@
  * @description Silent
  */
 
-import { assertIfTrue, mergeClasses } from "@sudoo/jss";
+import { assertIfFalse, assertIfTrue, mergeClasses } from "@sudoo/jss";
 import { Classes } from "jss";
 import * as React from "react";
 import { SilentCommand } from "./command";
@@ -50,8 +50,11 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
     public render() {
 
         return (<div className={this._style.wrapper}>
-            <div className={this._style.header}>Command</div>
-            <div className={this._style.body}>
+            <div className={this._style.header}>{this._getHeader()}</div>
+            <div className={mergeClasses(
+                this._style.body,
+                assertIfFalse(this._isArgumentStage(), this._style.bodyBorder),
+            )}>
                 <span className={this._style.inputWrapper}>
                     <input
                         autoFocus
@@ -65,13 +68,30 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                     />
                 </span>
             </div>
-            <div
-                className={this._style.dropDown}
-                ref={(ref: HTMLDivElement) => this._dropdownRef = ref}
-            >
-                {this.state.options.map(this._renderOption)}
-            </div>
+            {
+                !this._isArgumentStage() &&
+                <div
+                    className={this._style.dropDown}
+                    ref={(ref: HTMLDivElement) => this._dropdownRef = ref}
+                >
+                    {this.state.options.map(this._renderOption)}
+                </div>
+            }
         </div>);
+    }
+
+    private _getHeader() {
+
+        if (!this._isArgumentStage()) {
+            return (<span>Command</span>);
+        }
+
+        const command: SilentCommand | undefined = this.state.options[this.state.selected];
+        if (!command) {
+            return null;
+        }
+
+        return (<span><strong>{command.command}</strong> Argument</span>);
     }
 
     private _renderOption(each: SilentCommand, index: number) {
@@ -85,13 +105,35 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
             )}
         >
             <div className={this._style.sentence}>{each.command}</div>
-            {selected && <div className={this._style.subSentence}>{123}</div>}
+            {selected && <div className={this._style.subSentence}>{each.description}</div>}
         </div>);
     }
 
     private _handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
         const newValue: string = event.target.value;
+        console.log(newValue, this._isArgumentStage());
+        if (this._isArgumentStage()) {
+
+            const spliterCount: number = newValue.split(':').length;
+            if (spliterCount >= 3) {
+                return;
+            }
+        } else {
+
+            if (newValue.includes(':')) {
+                const command: SilentCommand | undefined = this.state.options[this.state.selected];
+                if (!command) {
+                    return;
+                }
+                this.setState({
+                    selected: 0,
+                    value: command.command + ':',
+                    options: this.props.config.getAutocomplete(newValue),
+                }, this._correctWindow);
+                return;
+            }
+        }
         this.setState({
             selected: 0,
             value: newValue,
@@ -101,23 +143,41 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     private _handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
 
-        console.log(event.key);
         switch (event.key) {
             case 'ArrowUp':
+                if (this._isArgumentStage()) {
+                    return;
+                }
                 event.preventDefault();
                 event.stopPropagation();
                 this._moveCursorUp();
                 break;
             case 'ArrowDown':
+                if (this._isArgumentStage()) {
+                    return;
+                }
                 event.preventDefault();
                 event.stopPropagation();
                 this._moveCursorDown();
                 break;
             case 'Tab':
+                if (this._isArgumentStage()) {
+                    return;
+                }
                 event.preventDefault();
                 event.stopPropagation();
                 this._moveCursorDown(true);
                 break;
+            case 'Enter': {
+                const command: SilentCommand | undefined = this.state.options[this.state.selected];
+                if (!command) {
+                    return;
+                }
+                event.preventDefault();
+                event.stopPropagation();
+                command.execute(this.state.value);
+                break;
+            }
         }
         return;
     }
@@ -164,5 +224,10 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 top: windowTop - 25,
             });
         }
+    }
+
+    private _isArgumentStage() {
+
+        return this.state.value.includes(':');
     }
 }

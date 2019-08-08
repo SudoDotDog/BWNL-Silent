@@ -6,6 +6,4 @@
 
 export type SilentParamType = "string";
 
-export type SilentCallbackParams = Record<string, any>;
-
-export type SilentCallback = (params: SilentCallbackParams) => void;
+export type SilentCallback = (arg?: string) => void;

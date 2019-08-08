@@ -11,7 +11,7 @@ import { Playground } from 'docz'
   <Silent 
     config={
         SilentConfig.create()
-        .addCommand(SilentCommand.with('First Option', () => console.log('First Option')))
+        .addCommand(SilentCommand.with('First Option', (arg) => console.log(arg)).setDescription('Description'))
         .addCommand(SilentCommand.with('Reload Window', () => console.log('Reload Window')))
     }
   />
