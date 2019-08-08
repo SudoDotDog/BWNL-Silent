@@ -5,7 +5,7 @@
  */
 
 import { JSSStyle, StyleManager } from "@sudoo/jss";
-import { NAVY } from "./color";
+import { GRAY, NAVY } from "./color";
 
 const SilentStyleBase: JSSStyle = {
 
@@ -23,6 +23,7 @@ const SilentStyleBase: JSSStyle = {
     },
     body: {
         display: 'flex',
+        borderBottom: `3px solid ${NAVY}`,
         flex: 1,
     },
     inputWrapper: {
@@ -40,8 +41,17 @@ const SilentStyleBase: JSSStyle = {
         fontSize: '25px',
     },
     dropDown: {
-        height: `${25 * 6}px`,
+        maxHeight: `${25 * 6}px`,
         overflow: 'auto',
+    },
+    sentence: {
+        height: '25px',
+        fontSize: '16px',
+    },
+    subSentence: {
+        color: GRAY,
+        height: '25px',
+        fontSize: '15px',
     },
     option: {
         paddingLeft: '9px',
@@ -50,6 +60,7 @@ const SilentStyleBase: JSSStyle = {
     selected: {
         backgroundColor: NAVY,
         color: 'white',
+        height: '50px',
     },
 };
 

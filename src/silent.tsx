@@ -76,14 +76,16 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     private _renderOption(each: SilentCommand, index: number) {
 
+        const selected: boolean = index === this.state.selected;
         return (<div
             key={each.command}
             className={mergeClasses(
                 this._style.option,
-                assertIfTrue(index === this.state.selected, this._style.selected),
+                assertIfTrue(selected, this._style.selected),
             )}
         >
-            {each.command}
+            <div className={this._style.sentence}>{each.command}</div>
+            {selected && <div className={this._style.subSentence}>{123}</div>}
         </div>);
     }
 
@@ -146,8 +148,8 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
             return;
         }
         const nextPosition: number = this.state.selected;
-        const topLine: number = nextPosition * 25;
-        const bottomLine: number = topLine + 25;
+        const topLine: number = Math.round(nextPosition * 25 + 25);
+        const bottomLine: number = Math.round(topLine - 25);
 
         const windowTop: number = Math.round(this._dropdownRef.scrollTop);
         const windowBottom: number = Math.round(this._dropdownRef.clientHeight + this._dropdownRef.scrollTop);

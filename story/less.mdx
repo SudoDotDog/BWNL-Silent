@@ -1,0 +1,18 @@
+---
+name: Less
+---
+
+import { Silent, SilentConfig, SilentCommand } from "../src/index";
+import { Playground } from 'docz'
+
+# Less
+
+<Playground>
+  <Silent 
+    config={
+        SilentConfig.create()
+        .addCommand(SilentCommand.with('First Option', () => console.log('First Option')))
+        .addCommand(SilentCommand.with('Reload Window', () => console.log('Reload Window')))
+    }
+  />
+</Playground>
