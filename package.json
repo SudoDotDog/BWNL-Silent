@@ -21,6 +21,7 @@
     "react-dom": "*"
   },
   "dependencies": {
+    "@sudoo/bark": "^2.7.1",
     "@sudoo/jss": "^1.2.1"
   },
   "devDependencies": {
