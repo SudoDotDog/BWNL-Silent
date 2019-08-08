@@ -37,7 +37,12 @@ export class SilentConfig {
         });
 
         const sorted = distanced
-            .sort((first, second) => first.distance <= second.distance ? 1 : -1)
+            .sort((first, second) => {
+                if (first.distance === second.distance) {
+                    return 0;
+                }
+                return first.distance > second.distance ? 1 : -1;
+            })
             .map((each) => each.command);
 
         return sorted;

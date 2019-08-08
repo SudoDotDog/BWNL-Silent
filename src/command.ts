@@ -25,6 +25,11 @@ export class SilentCommand {
         this._callback = callback;
     }
 
+    public get command(): string {
+
+        return this._command;
+    }
+
     public setDescription(description: string): this {
 
         this._description = description;
@@ -36,5 +41,10 @@ export class SilentCommand {
         const result: number = compare(this._command).with(target).distance;
         console.log(this._command, target, result);
         return result;
+    }
+
+    public toString(): string {
+
+        return this._command;
     }
 }
