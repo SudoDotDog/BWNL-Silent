@@ -20,7 +20,10 @@ export const SilentView: React.FC<SilentViewProps> = (props: SilentViewProps) =>
 
     return (<div className={style.outer}>
         <div className={style.inner} style={props.style}>
-            <Silent config={props.config} />
+            <Silent
+                header={props.header}
+                config={props.config}
+            />
         </div>
     </div>);
 };
