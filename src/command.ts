@@ -18,6 +18,7 @@ export class SilentCommand {
     private readonly _callback: SilentCallback;
 
     private _description: string = '';
+    private _close: boolean = true;
 
     private constructor(command: string, callback: SilentCallback) {
 
@@ -40,9 +41,20 @@ export class SilentCommand {
         return this._description;
     }
 
+    public get close(): boolean {
+
+        return this._close;
+    }
+
     public setDescription(description: string): this {
 
         this._description = description;
+        return this;
+    }
+
+    public preventClose(): this {
+
+        this._close = false;
         return this;
     }
 
