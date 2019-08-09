@@ -6,7 +6,10 @@
 
 export const partialMatch = (children: string, parent: string): boolean => {
 
-    if (children.length === 0 || parent.length === 0) {
+    if (children.length === 0) {
+        return true;
+    }
+    if (parent.length === 0) {
         return false;
     }
     let current: number = 0;
