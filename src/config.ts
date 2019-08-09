@@ -6,6 +6,7 @@
 
 import { SilentCommand } from "./command";
 import { SilentCancelCallback } from "./declare";
+import { partialMatch } from "./util";
 
 export class SilentConfig {
 
@@ -46,10 +47,12 @@ export class SilentConfig {
         const distanced: Array<{
             distance: number;
             command: SilentCommand;
-        }> = this._commands.map((command: SilentCommand) => {
-            const distance: number = command.distance(keyword);
-            return { distance, command };
-        });
+        }> = this._commands
+            .filter((command: SilentCommand) => partialMatch(keyword, command.command))
+            .map((command: SilentCommand) => {
+                const distance: number = command.distance(keyword);
+                return { distance, command };
+            });
 
         const sorted = distanced
             .sort((first, second) => {

@@ -112,7 +112,6 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
     private _handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
         const newValue: string = event.target.value;
-        console.log(newValue, this._isArgumentStage());
         if (this._isArgumentStage()) {
 
             const spliterCount: number = newValue.split(':').length;
