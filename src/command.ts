@@ -73,7 +73,7 @@ export class SilentCommand {
 
     public distance(target: string): number {
 
-        const result: number = compare(this._command).with(target).distance;
+        const result: number = compare(this._command.toLowerCase()).with(target).distance;
         return result;
     }
 

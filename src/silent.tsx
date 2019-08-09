@@ -49,11 +49,12 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     public render() {
 
+        const dropDown: boolean = this._shouldDisplayDropdown();
         return (<div className={this._style.wrapper}>
             <div className={this._style.header}>{this._getHeader()}</div>
             <div className={mergeClasses(
                 this._style.body,
-                assertIfFalse(this._isArgumentStage(), this._style.bodyBorder),
+                assertIfTrue(dropDown, this._style.bodyBorder),
             )}>
                 <span className={this._style.inputWrapper}>
                     <input
@@ -68,15 +69,13 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                     />
                 </span>
             </div>
-            {
-                !this._isArgumentStage() &&
+            {dropDown &&
                 <div
                     className={this._style.dropDown}
                     ref={(ref: HTMLDivElement) => this._dropdownRef = ref}
                 >
                     {this.state.options.map(this._renderOption)}
-                </div>
-            }
+                </div>}
         </div>);
     }
 
@@ -233,6 +232,18 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 top: windowTop - 25,
             });
         }
+    }
+
+    private _shouldDisplayDropdown() {
+
+        if (this._isArgumentStage()) {
+            return false;
+        }
+        if (this.state.options.length === 0) {
+            return false;
+        }
+
+        return true;
     }
 
     private _isArgumentStage() {

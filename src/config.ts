@@ -44,13 +44,14 @@ export class SilentConfig {
 
     public getAutocomplete(keyword: string): SilentCommand[] {
 
+        const parsedKeyword: string = keyword.toLowerCase();
         const distanced: Array<{
             distance: number;
             command: SilentCommand;
         }> = this._commands
-            .filter((command: SilentCommand) => partialMatch(keyword, command.command))
+            .filter((command: SilentCommand) => partialMatch(parsedKeyword, command.command.toLowerCase()))
             .map((command: SilentCommand) => {
-                const distance: number = command.distance(keyword);
+                const distance: number = command.distance(parsedKeyword);
                 return { distance, command };
             });
 
