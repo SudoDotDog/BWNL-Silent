@@ -9,6 +9,7 @@ import { Playground } from 'docz'
 
 <Playground>
   <Silent 
+    header={<span>Header</span>}
     config={
         SilentConfig.create()
         .addCommand(SilentCommand.with('First Option', () => console.log('First Option')))

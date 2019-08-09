@@ -4,7 +4,7 @@
  * @description Silent
  */
 
-import { assertIfFalse, assertIfTrue, mergeClasses } from "@sudoo/jss";
+import { assertIfTrue, mergeClasses } from "@sudoo/jss";
 import { Classes } from "jss";
 import * as React from "react";
 import { SilentCommand } from "./command";
@@ -13,6 +13,7 @@ import { SilentStyle } from "./style/silent";
 
 export type SilentProps = {
 
+    readonly header?: any;
     readonly config: SilentConfig;
 };
 
@@ -51,7 +52,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
         const dropDown: boolean = this._shouldDisplayDropdown();
         return (<div className={this._style.wrapper}>
-            <div className={this._style.header}>{this._getHeader()}</div>
+            {this.props.header && <div className={this._style.header}>{this.props.header}</div>}
             <div className={mergeClasses(
                 this._style.body,
                 assertIfTrue(dropDown, this._style.bodyBorder),
@@ -69,7 +70,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                     />
                 </span>
             </div>
-            {dropDown &&
+            {true &&
                 <div
                     className={this._style.dropDown}
                     ref={(ref: HTMLDivElement) => this._dropdownRef = ref}
@@ -77,20 +78,6 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                     {this.state.options.map(this._renderOption)}
                 </div>}
         </div>);
-    }
-
-    private _getHeader() {
-
-        if (!this._isArgumentStage()) {
-            return (<span>Command</span>);
-        }
-
-        const command: SilentCommand | undefined = this.state.options[this.state.selected];
-        if (!command) {
-            return null;
-        }
-
-        return (<span><strong>{command.command}</strong> Argument</span>);
     }
 
     private _renderOption(each: SilentCommand, index: number) {
@@ -236,9 +223,6 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     private _shouldDisplayDropdown() {
 
-        if (this._isArgumentStage()) {
-            return false;
-        }
         if (this.state.options.length === 0) {
             return false;
         }
