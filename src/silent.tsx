@@ -133,11 +133,13 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 }, this._correctWindow);
                 return;
             }
+            this.setState({
+                options: this.props.config.getAutocomplete(newValue),
+            });
         }
         this.setState({
             selected: 0,
             value: newValue,
-            options: this.props.config.getAutocomplete(newValue),
         }, this._correctWindow);
     }
 

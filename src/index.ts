@@ -12,4 +12,5 @@ export * from "./command";
 export * from "./config";
 export * from "./declare";
 export * from "./silent";
+export * from "./view";
 

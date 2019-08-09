@@ -10,6 +10,7 @@ import { GRAY, NAVY } from "./color";
 const SilentStyleBase: JSSStyle = {
 
     wrapper: {
+        backgroundColor: 'white',
         border: `3px solid ${NAVY}`,
 
         display: 'flex',
