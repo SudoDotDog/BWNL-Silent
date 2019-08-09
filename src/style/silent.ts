@@ -39,6 +39,7 @@ const SilentStyleBase: JSSStyle = {
         margin: 0,
         padding: 0,
         paddingLeft: '9px',
+        paddingRight: '9px',
         height: '36px',
         fontSize: '25px',
     },
@@ -54,9 +55,13 @@ const SilentStyleBase: JSSStyle = {
         color: GRAY,
         height: '25px',
         fontSize: '15px',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
     },
     option: {
         paddingLeft: '9px',
+        paddingRight: '9px',
         height: '25px',
     },
     selected: {

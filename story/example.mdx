@@ -12,7 +12,7 @@ import { Playground } from 'docz'
     header={<span>Header</span>}
     config={
         SilentConfig.create()
-        .addCommand(SilentCommand.with('First Option', () => console.log('First Option')))
+        .addCommand(SilentCommand.with('First Option', () => console.log('First Option')).setDescription('A Very Long Description '.repeat(10)))
         .addCommand(SilentCommand.with('Reload Window', () => console.log('Reload Window')))
         .addCommand(SilentCommand.with('Second Option', () => console.log('Second Option')))
         .addCommand(SilentCommand.with('Something Else', () => console.log('Something Else')))

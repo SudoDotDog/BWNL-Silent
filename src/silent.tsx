@@ -172,6 +172,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 event.preventDefault();
                 event.stopPropagation();
                 this.props.config.cancel();
+                break;
             }
         }
         return;
