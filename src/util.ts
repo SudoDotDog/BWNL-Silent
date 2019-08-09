@@ -24,3 +24,9 @@ export const partialMatch = (children: string, parent: string): boolean => {
     }
     return false;
 };
+
+export const relativeNumber = (target: number): number => {
+
+    const times: number = Math.round(target / 25);
+    return times * 25;
+};

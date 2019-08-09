@@ -10,6 +10,7 @@ import * as React from "react";
 import { SilentCommand } from "./command";
 import { SilentConfig } from "./config";
 import { SilentStyle } from "./style/silent";
+import { relativeNumber } from "./util";
 
 export type SilentProps = {
 
@@ -204,11 +205,14 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
             return;
         }
         const nextPosition: number = this.state.selected;
-        const topLine: number = Math.round(nextPosition * 25 + 25);
-        const bottomLine: number = Math.round(topLine - 25);
+        const topLine: number = nextPosition * 25 + 25;
+        const bottomLine: number = topLine;
 
-        const windowTop: number = Math.round(this._dropdownRef.scrollTop);
-        const windowBottom: number = Math.round(this._dropdownRef.clientHeight + this._dropdownRef.scrollTop);
+        const scrollTop: number = relativeNumber(this._dropdownRef.scrollTop);
+        const clientHeight: number = relativeNumber(this._dropdownRef.clientHeight);
+
+        const windowTop: number = relativeNumber(scrollTop);
+        const windowBottom: number = relativeNumber(clientHeight + scrollTop);
 
         if (topLine >= windowBottom) {
             this._dropdownRef.scrollTo({
