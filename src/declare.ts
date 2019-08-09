@@ -6,4 +6,5 @@
 
 export type SilentParamType = "string";
 
+export type SilentCancelCallback = () => void;
 export type SilentCallback = (arg?: string) => void;

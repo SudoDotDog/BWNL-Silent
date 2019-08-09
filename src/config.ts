@@ -5,6 +5,7 @@
  */
 
 import { SilentCommand } from "./command";
+import { SilentCancelCallback } from "./declare";
 
 export class SilentConfig {
 
@@ -14,15 +15,29 @@ export class SilentConfig {
     }
 
     private readonly _commands: SilentCommand[];
+    private _onCancel: SilentCancelCallback | null = null;
 
     private constructor() {
 
         this._commands = [];
     }
 
+    public cancel(): void {
+
+        if (this._onCancel) {
+            this._onCancel();
+        }
+    }
+
     public addCommand(command: SilentCommand): this {
 
         this._commands.push(command);
+        return this;
+    }
+
+    public setOnCancel(callback: SilentCancelCallback): this {
+
+        this._onCancel = callback;
         return this;
     }
 

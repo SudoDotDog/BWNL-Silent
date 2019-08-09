@@ -178,6 +178,11 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 command.execute(this.state.value);
                 break;
             }
+            case 'Escape': {
+                event.preventDefault();
+                event.stopPropagation();
+                this.props.config.cancel();
+            }
         }
         return;
     }
