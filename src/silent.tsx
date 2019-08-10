@@ -7,6 +7,7 @@
 import { assertIfTrue, mergeClasses } from "@sudoo/jss";
 import { Classes } from "jss";
 import * as React from "react";
+import { SilentOption } from "./components/option";
 import { SilentCommand } from "./config/command";
 import { SilentConfig } from "./config/config";
 import { SilentStyle } from "./style/silent";
@@ -86,16 +87,11 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
     private _renderOption(each: SilentCommand, index: number) {
 
         const selected: boolean = index === this.state.selected;
-        return (<div
+        return (<SilentOption
             key={each.command}
-            className={mergeClasses(
-                this._style.option,
-                assertIfTrue(selected, this._style.selected),
-            )}
-        >
-            <div className={this._style.sentence}>{each.command}</div>
-            {selected && <div className={this._style.subSentence}>{each.description}</div>}
-        </div>);
+            command={each}
+            selected={selected}
+        />);
     }
 
     private _handleChange(event: React.ChangeEvent<HTMLInputElement>) {

@@ -60,9 +60,16 @@ const SilentStyleBase: JSSStyle = {
         textOverflow: 'ellipsis',
     },
     option: {
+        boxSizing: 'border-box',
         paddingLeft: '9px',
         paddingRight: '9px',
         height: '25px',
+        cursor: 'pointer',
+        userSelect: 'none',
+        '&:hover': {
+            backgroundColor: NAVY,
+            color: WHITE,
+        },
     },
     selected: {
         backgroundColor: NAVY,
