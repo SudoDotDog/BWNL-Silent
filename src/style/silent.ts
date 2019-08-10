@@ -4,13 +4,13 @@
  * @description Silent
  */
 
-import { GRAY, NAVY } from "@bwnl/shiny-inline";
+import { GRAY, NAVY, WHITE } from "@bwnl/shiny-inline";
 import { JSSStyle, StyleManager } from "@sudoo/jss";
 
 const SilentStyleBase: JSSStyle = {
 
     wrapper: {
-        backgroundColor: 'white',
+        backgroundColor: WHITE,
         border: `3px solid ${NAVY}`,
 
         display: 'flex',
@@ -66,7 +66,7 @@ const SilentStyleBase: JSSStyle = {
     },
     selected: {
         backgroundColor: NAVY,
-        color: 'white',
+        color: WHITE,
         height: '50px',
     },
 };

@@ -14,7 +14,7 @@ import { relativeNumber } from "./util";
 
 export type SilentProps = {
 
-    readonly header?: any;
+    readonly header?: React.ReactNode;
     readonly config: SilentConfig;
 };
 
@@ -53,7 +53,9 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
         const dropDown: boolean = this._shouldDisplayDropdown();
         return (<div className={this._style.wrapper}>
-            {this.props.header && <div className={this._style.header}>{this.props.header}</div>}
+            {this.props.header && <div className={this._style.header}>
+                {this.props.header}
+            </div>}
             <div className={mergeClasses(
                 this._style.body,
                 assertIfTrue(dropDown, this._style.bodyBorder),
