@@ -7,8 +7,8 @@
 import { assertIfTrue, mergeClasses } from "@sudoo/jss";
 import { Classes } from "jss";
 import * as React from "react";
-import { SilentCommand } from "./command";
-import { SilentConfig } from "./config";
+import { SilentCommand } from "./config/command";
+import { SilentConfig } from "./config/config";
 import { SilentStyle } from "./style/silent";
 import { relativeNumber } from "./util";
 
@@ -114,7 +114,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 }
                 this.setState({
                     selected: 0,
-                    value: command.command + ':',
+                    value: `${command.command}:`,
                     options: this.props.config.getAutocomplete(newValue),
                 }, this._correctWindow);
                 return;
