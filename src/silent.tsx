@@ -102,7 +102,9 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
         const newValue: string = event.target.value;
         const command: SilentCommand | undefined = this.state.options[this.state.selected];
         if (!command) {
-            return;
+            if (this._isArgumentStage() && newValue.includes(':')) {
+                return;
+            }
         }
         this._performChange(command, newValue);
         return;
@@ -188,20 +190,19 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 if (!command) {
                     return;
                 }
+                const fixedValue: string = `${command.command}:`;
                 this.setState({
                     selected: 0,
-                    value: `${command.command}:`,
-                    options: this.props.config.getAutocomplete(value),
+                    value: fixedValue,
+                    options: this.props.config.getAutocomplete(fixedValue),
                 }, this._correctWindow);
                 return;
             }
-            this.setState({
-                options: this.props.config.getAutocomplete(value),
-            });
         }
         this.setState({
             selected: 0,
             value,
+            options: this.props.config.getAutocomplete(value),
         }, this._correctWindow);
     }
 
