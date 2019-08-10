@@ -4,9 +4,9 @@
  * @description Config
  */
 
+import { partialMatch } from "../util";
 import { SilentCommand } from "./command";
 import { SilentCancelCallback } from "./declare";
-import { partialMatch } from "./util";
 
 export class SilentConfig {
 
