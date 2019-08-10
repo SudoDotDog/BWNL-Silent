@@ -37,6 +37,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     private _style: Classes = SilentStyle.use();
     private _dropdownRef: HTMLDivElement | null = null;
+    private _inputRef: HTMLInputElement | null = null;
 
     public constructor(props: SilentProps) {
 
@@ -67,6 +68,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                         autoCapitalize="off"
                         autoComplete="off"
                         autoCorrect="off"
+                        ref={(ref: HTMLInputElement) => this._inputRef = ref}
                         className={this._style.input}
                         value={this.state.value}
                         onKeyDown={this._handleKeyDown}
@@ -88,6 +90,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
         const selected: boolean = index === this.state.selected;
         return (<SilentOption
+            onClick={() => this._executeCommand(each, this.state.value)}
             key={each.command}
             command={each}
             selected={selected}
@@ -97,34 +100,12 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
     private _handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
         const newValue: string = event.target.value;
-        if (this._isArgumentStage()) {
-
-            const spliterCount: number = newValue.split(':').length;
-            if (spliterCount >= 3) {
-                return;
-            }
-        } else {
-
-            if (newValue.includes(':')) {
-                const command: SilentCommand | undefined = this.state.options[this.state.selected];
-                if (!command) {
-                    return;
-                }
-                this.setState({
-                    selected: 0,
-                    value: `${command.command}:`,
-                    options: this.props.config.getAutocomplete(newValue),
-                }, this._correctWindow);
-                return;
-            }
-            this.setState({
-                options: this.props.config.getAutocomplete(newValue),
-            });
+        const command: SilentCommand | undefined = this.state.options[this.state.selected];
+        if (!command) {
+            return;
         }
-        this.setState({
-            selected: 0,
-            value: newValue,
-        }, this._correctWindow);
+        this._performChange(command, newValue);
+        return;
     }
 
     private _handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -162,7 +143,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 event.preventDefault();
                 event.stopPropagation();
                 command.execute(this.state.value);
-                if (command.close) {
+                if (command.shouldClose) {
                     this.props.config.cancel();
                 }
                 break;
@@ -175,6 +156,53 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
             }
         }
         return;
+    }
+
+    private _executeCommand(command: SilentCommand, value: string) {
+
+        if (this._isArgumentStage()) {
+            command.execute(value);
+            return;
+        }
+        if (command.isRequireArgument) {
+            this._performChange(command, `${command.command}:`);
+            if (this._inputRef) {
+                this._inputRef.focus();
+            }
+            return;
+        }
+        command.execute(value);
+    }
+
+    private _performChange(command: SilentCommand, value: string) {
+
+        if (this._isArgumentStage()) {
+
+            const spliterCount: number = value.split(':').length;
+            if (spliterCount >= 3) {
+                return;
+            }
+        } else {
+
+            if (value.includes(':')) {
+                if (!command) {
+                    return;
+                }
+                this.setState({
+                    selected: 0,
+                    value: `${command.command}:`,
+                    options: this.props.config.getAutocomplete(value),
+                }, this._correctWindow);
+                return;
+            }
+            this.setState({
+                options: this.props.config.getAutocomplete(value),
+            });
+        }
+        this.setState({
+            selected: 0,
+            value,
+        }, this._correctWindow);
     }
 
     private _moveCursorUp(recursive?: boolean) {

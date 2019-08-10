@@ -19,6 +19,7 @@ export class SilentCommand {
 
     private _description: string = '';
     private _close: boolean = true;
+    private _requireArgument: boolean = false;
 
     private constructor(command: string, callback: SilentCallback) {
 
@@ -41,7 +42,12 @@ export class SilentCommand {
         return this._description;
     }
 
-    public get close(): boolean {
+    public get isRequireArgument(): boolean {
+
+        return this._requireArgument;
+    }
+
+    public get shouldClose(): boolean {
 
         return this._close;
     }
@@ -49,6 +55,12 @@ export class SilentCommand {
     public setDescription(description: string): this {
 
         this._description = description;
+        return this;
+    }
+
+    public requireArgument(): this {
+
+        this._requireArgument = true;
         return this;
     }
 

@@ -18,7 +18,7 @@ import { Playground } from 'docz'
         .addCommand(SilentCommand.with('Something Else', () => console.log('Something Else')))
         .addCommand(SilentCommand.with('Third Option', () => console.log('Third Option')))
         .addCommand(SilentCommand.with('Very Short', () => console.log('Very Short')))
-        .addCommand(SilentCommand.with('Aha', () => console.log('Aha')))
+        .addCommand(SilentCommand.with('Require Argument', () => console.log('Aha')).requireArgument())
         .addCommand(SilentCommand.with('Anthoer Command That is really long', () => console.log('Anthoer Command That is really long')))
         .addCommand(SilentCommand.with('End Option', () => console.log('End Option')))
     }

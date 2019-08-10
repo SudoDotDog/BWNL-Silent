@@ -13,6 +13,7 @@ import { SilentStyle } from "../style/silent";
 export type SilentOptionProps = {
 
     readonly command: SilentCommand;
+    readonly onClick: () => void;
     readonly selected: boolean;
 };
 
@@ -24,6 +25,7 @@ export const SilentOption: React.FC<SilentOptionProps> = (props: SilentOptionPro
     const command: SilentCommand = props.command;
 
     return (<div
+        onClick={props.onClick}
         className={mergeClasses(
             style.option,
             assertIfTrue(selected, style.selected),
