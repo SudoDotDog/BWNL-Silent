@@ -21,6 +21,7 @@
     "react-dom": "*"
   },
   "dependencies": {
+    "@bwnl/shiny-inline": "^1.0.0",
     "@sudoo/bark": "^2.7.1",
     "@sudoo/jss": "^1.2.1"
   },
