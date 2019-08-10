@@ -4,8 +4,8 @@
  * @description Silent
  */
 
+import { GRAY, NAVY } from "@bwnl/shiny-inline";
 import { JSSStyle, StyleManager } from "@sudoo/jss";
-import { GRAY, NAVY } from "./color";
 
 const SilentStyleBase: JSSStyle = {
 
