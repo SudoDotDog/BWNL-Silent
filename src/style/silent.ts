@@ -43,6 +43,8 @@ const SilentStyleBase: JSSStyle = {
         margin: 0,
         padding: 0,
         marginTop: '1px',
+        marginBottom: '1px',
+        marginLeft: '1px',
         paddingLeft: '9px',
         paddingRight: '9px',
         height: '36px',

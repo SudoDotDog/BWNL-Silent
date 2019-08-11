@@ -1,6 +1,6 @@
 {
   "name": "@bwnl/silent",
-  "version": "1.3.1",
+  "version": "1.3.3",
   "description": ":black_square_button: BWNL Loading for React",
   "main": "index.js",
   "directories": {
