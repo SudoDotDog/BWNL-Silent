@@ -10,6 +10,7 @@ import { Playground } from 'docz'
 <Playground>
   <Silent 
     header={<span>Header</span>}
+    closeButton={<div style={{width:'50px',backgroundColor:'black'}}>1t</div>}
     config={
         SilentConfig.create()
         .addCommand(SilentCommand.with('First Option', () => console.log('First Option')).setDescription('A Very Long Description '.repeat(10)))

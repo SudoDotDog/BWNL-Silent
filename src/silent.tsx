@@ -15,6 +15,7 @@ import { relativeNumber } from "./util";
 
 export type SilentProps = {
 
+    readonly closeButton?: React.ReactNode;
     readonly header?: React.ReactNode;
     readonly config: SilentConfig;
 };
@@ -55,9 +56,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
         const dropDown: boolean = this._shouldDisplayDropdown();
         return (<div className={this._style.wrapper}>
-            {this.props.header && <div className={this._style.header}>
-                {this.props.header}
-            </div>}
+            {this._renderHeader()}
             <div className={mergeClasses(
                 this._style.body,
                 assertIfTrue(dropDown, this._style.bodyBorder),
@@ -83,6 +82,22 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 >
                     {this.state.options.map(this._renderOption)}
                 </div>}
+        </div>);
+    }
+
+    private _renderHeader() {
+
+        if (!(this.props.header || this.props.closeButton)) {
+            return null;
+        }
+
+        return (<div className={this._style.headerWrapper}>
+            <div className={this._style.header}>
+                {this.props.header || null}
+            </div>
+            {this.props.closeButton && <div>
+                {this.props.closeButton}
+            </div>}
         </div>);
     }
 

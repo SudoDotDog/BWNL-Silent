@@ -1,14 +1,15 @@
 ---
-name: View
+name: Model
 ---
 
 import { SilentView, SilentConfig, SilentCommand } from "../src/index";
 import { Playground } from 'docz'
 
-# View
+# Model
 
 <Playground>
   <SilentView
+    onCancel={() => console.log('canceled')}
     style={{
       marginTop: '30%',
       width: '60%',

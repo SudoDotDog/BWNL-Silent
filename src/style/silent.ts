@@ -16,10 +16,14 @@ const SilentStyleBase: JSSStyle = {
         display: 'flex',
         flexDirection: 'column',
     },
+    headerWrapper: {
+        display: 'flex',
+    },
     header: {
         height: 'auto',
         paddingLeft: '5px',
         color: NAVY,
+        flex: 1,
     },
     body: {
         display: 'flex',
@@ -38,6 +42,7 @@ const SilentStyleBase: JSSStyle = {
         outline: 0,
         margin: 0,
         padding: 0,
+        marginTop: '1px',
         paddingLeft: '9px',
         paddingRight: '9px',
         height: '36px',

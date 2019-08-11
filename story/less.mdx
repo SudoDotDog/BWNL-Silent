@@ -9,6 +9,7 @@ import { Playground } from 'docz'
 
 <Playground>
   <Silent 
+    closeButton="X"
     config={
         SilentConfig.create()
         .addCommand(SilentCommand.with('First Option', (arg) => console.log(arg)).setDescription('Description'))
