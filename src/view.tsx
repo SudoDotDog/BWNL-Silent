@@ -13,6 +13,7 @@ import { SilentViewStyle } from "./style/view";
 export type SilentViewProps = {
 
     readonly style: React.CSSProperties;
+    readonly zIndex?: number;
     readonly onCancel?: () => void;
 } & SilentProps;
 
@@ -26,6 +27,9 @@ export const SilentView: React.FC<SilentViewProps> = (props: SilentViewProps) =>
             style.outer,
             assertIfTri(hasOnCancel, style.outerCancelable, style.outerTransparent),
         )}
+        style={{
+            zIndex: props.zIndex || 15,
+        }}
         onClick={props.onCancel}
     >
         <div

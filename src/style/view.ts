@@ -10,7 +10,6 @@ const SilentViewStyleBase: JSSStyle = {
 
     outer: {
         position: 'fixed',
-        zIndex: 15,
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
