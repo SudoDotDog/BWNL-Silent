@@ -44,8 +44,13 @@ export class SilentConfig {
 
     public getAutocomplete(keyword: string): SilentCommand[] {
 
+        if (keyword.length === 0) {
+            return this._commands.sort();
+        }
+
         const splited: string[] = keyword.split(':');
         const parsedKeyword: string = splited[0].toLowerCase();
+
         const distanced: Array<{
             distance: number;
             command: SilentCommand;
