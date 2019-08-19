@@ -36,6 +36,22 @@ export class SilentConfig {
         return this;
     }
 
+    public addCommands(...commands: SilentCommand[]): this {
+
+        for (const command of commands) {
+            this.addCommand(command);
+        }
+        return this;
+    }
+
+    public addCommandList(commands: SilentCommand[]): this {
+
+        for (const command of commands) {
+            this.addCommand(command);
+        }
+        return this;
+    }
+
     public setOnCancel(callback: SilentCancelCallback): this {
 
         this._onCancel = callback;

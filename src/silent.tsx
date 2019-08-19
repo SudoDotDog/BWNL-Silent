@@ -159,10 +159,7 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
                 }
                 event.preventDefault();
                 event.stopPropagation();
-                command.execute(this.state.value);
-                if (command.shouldClose) {
-                    this.props.config.cancel();
-                }
+                this._executeCommand(command, this.state.value);
                 break;
             }
             case 'Escape': {
@@ -177,6 +174,9 @@ export class Silent extends React.Component<SilentProps, SilentStates> {
 
     private _executeCommand(command: SilentCommand, value: string) {
 
+        if (command.shouldClose) {
+            this.props.config.cancel();
+        }
         if (this._isArgumentStage()) {
             command.execute(value);
             return;
