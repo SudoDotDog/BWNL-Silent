@@ -5,13 +5,26 @@
  */
 
 import { compare } from "@sudoo/bark/string";
-import { SilentCallback } from "./declare";
+import { SilentCallback, SilentStructure } from "./declare";
 
 export class SilentCommand {
 
     public static with(command: string, callback: SilentCallback): SilentCommand {
 
         return new SilentCommand(command, callback);
+    }
+
+    public static structure(structure: SilentStructure): SilentCommand {
+
+        const command: SilentCommand = this.with(structure.command, structure.callback);
+
+        if (structure.description) {
+            command.setDescription(structure.description);
+        }
+        if (structure.required) {
+            command.requireArgument();
+        }
+        return command;
     }
 
     private readonly _command: string;
