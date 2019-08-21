@@ -6,13 +6,18 @@
 
 import { partialMatch } from "../util";
 import { SilentCommand } from "./command";
-import { SilentCancelCallback } from "./declare";
+import { SilentCancelCallback, SilentStructure } from "./declare";
 
 export class SilentConfig {
 
     public static create(): SilentConfig {
 
         return new SilentConfig();
+    }
+
+    public static from(list: SilentStructure[]): SilentConfig {
+
+        return this.create().addStructureList(list);
     }
 
     private readonly _commands: SilentCommand[];
@@ -28,6 +33,20 @@ export class SilentConfig {
         if (this._onCancel) {
             this._onCancel();
         }
+    }
+
+    public addStructure(structure: SilentStructure): this {
+
+        this.addCommand(SilentCommand.structure(structure));
+        return this;
+    }
+
+    public addStructureList(list: SilentStructure[]): this {
+
+        for (const structure of list) {
+            this.addStructure(structure);
+        }
+        return this;
     }
 
     public addCommand(command: SilentCommand): this {
