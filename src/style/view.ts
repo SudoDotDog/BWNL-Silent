@@ -4,9 +4,9 @@
  * @description View
  */
 
-import { JSSStyle, StyleManager } from "@sudoo/jss";
+import { StyleManager, Styles } from "@sudoo/jss";
 
-const SilentViewStyleBase: JSSStyle = {
+const SilentViewStyleBase: Styles = {
 
     outer: {
         position: 'fixed',

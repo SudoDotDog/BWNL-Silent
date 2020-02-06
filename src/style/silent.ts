@@ -5,9 +5,9 @@
  */
 
 import { GRAY, NAVY, WHITE } from "@bwnl/shiny-inline";
-import { JSSStyle, StyleManager } from "@sudoo/jss";
+import { StyleManager, Styles } from "@sudoo/jss";
 
-const SilentStyleBase: JSSStyle = {
+const SilentStyleBase: Styles = {
 
     wrapper: {
         backgroundColor: WHITE,
