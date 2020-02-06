@@ -14,6 +14,9 @@ pids
 # Build
 app
 
+# lock
+yarn.lock
+
 # Temp
 .docz
 
