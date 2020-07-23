@@ -17,7 +17,7 @@ describe('Given [Util] helper methods', (): void => {
 
         const result: boolean = partialMatch(children, parent);
 
-        // tslint:disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(result).to.be.true;
     });
 
@@ -28,7 +28,7 @@ describe('Given [Util] helper methods', (): void => {
 
         const result: boolean = partialMatch(children, parent);
 
-        // tslint:disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(result).to.be.true;
     });
 
@@ -39,7 +39,7 @@ describe('Given [Util] helper methods', (): void => {
 
         const result: boolean = partialMatch(children, parent);
 
-        // tslint:disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(result).to.be.false;
     });
 
@@ -50,7 +50,7 @@ describe('Given [Util] helper methods', (): void => {
 
         const result: boolean = partialMatch(children, parent);
 
-        // tslint:disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(result).to.be.false;
     });
 
@@ -61,7 +61,7 @@ describe('Given [Util] helper methods', (): void => {
 
         const result: boolean = partialMatch(children, parent);
 
-        // tslint:disable-next-line
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(result).to.be.true;
     });
 });

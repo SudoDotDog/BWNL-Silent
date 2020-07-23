@@ -4,6 +4,8 @@
  * @description Util
  */
 
+export const STANDARD_PAD: number = 25;
+
 export const partialMatch = (children: string, parent: string): boolean => {
 
     if (children.length === 0) {
@@ -27,6 +29,6 @@ export const partialMatch = (children: string, parent: string): boolean => {
 
 export const relativeNumber = (target: number): number => {
 
-    const times: number = Math.round(target / 25);
-    return times * 25;
+    const times: number = Math.round(target / STANDARD_PAD);
+    return times * STANDARD_PAD;
 };

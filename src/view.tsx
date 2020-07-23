@@ -28,6 +28,7 @@ export const SilentView: React.FC<SilentViewProps> = (props: SilentViewProps) =>
             assertIfTri(hasOnCancel, style.outerCancelable, style.outerTransparent),
         )}
         style={{
+            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
             zIndex: props.zIndex || 15,
         }}
         onClick={props.onCancel}

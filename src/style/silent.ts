@@ -6,6 +6,7 @@
 
 import { GRAY, NAVY, WHITE } from "@bwnl/shiny-inline";
 import { StyleManager, Styles } from "@sudoo/jss";
+import { STANDARD_PAD } from "../util";
 
 const SilentStyleBase: Styles = {
 
@@ -51,7 +52,7 @@ const SilentStyleBase: Styles = {
         fontSize: '25px',
     },
     dropDown: {
-        maxHeight: `${25 * 6}px`,
+        maxHeight: `${STANDARD_PAD * 6}px`,
         overflow: 'auto',
     },
     sentence: {
