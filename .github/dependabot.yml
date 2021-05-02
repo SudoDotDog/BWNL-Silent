@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: "@storybook/addon-actions"
+    versions:
+    - 6.2.7
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.13.13
+  - dependency-name: "@storybook/addon-knobs"
+    versions:
+    - 6.1.16
+    - 6.1.20
